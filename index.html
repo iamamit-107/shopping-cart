@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shopping Cart</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <section id="cart-page">
+      <div class="container">
+        <div class="cart">
+          <div class="col-md-12 col-lg-10 mx-auto">
+            <div id="cart-1" class="cart-item">
+              <div class="row">
+                <div class="col-md-7 center-item">
+                  <img src="images/product-1.png" alt="" />
+                  <h5>iPhone 11 128GB Black</h5>
+                </div>
+
+                <div class="col-md-5 center-item">
+                  <div class="input-group number-spinner">
+                    <button id="minus-btn" class="btn btn-default">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <input
+                      id="product-count"
+                      type="text"
+                      class="form-control text-center"
+                      value="0"
+                    />
+                    <button id="plus-btn" class="btn btn-default">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                  <h5>$ <span id="total-amount">0</span></h5>
+                  <img
+                    id="remove-cart-1"
+                    src="images/remove.png"
+                    alt=""
+                    class="remove-item"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div id="cart-2" class="cart-item">
+              <div class="row">
+                <div class="col-md-7 center-item mx-auto">
+                  <img src="images/product-2.png" alt="" />
+                  <h5>iPhone 11 Silicone Case - Black</h5>
+                </div>
+                <div class="col-md-5 center-item">
+                  <div class="input-group number-spinner">
+                    <button id="minus-btn-cover" class="btn btn-default">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <input
+                      id="cover-input-count"
+                      type="text"
+                      class="form-control text-center"
+                      value="0"
+                    />
+                    <button id="plus-btn-cover" class="btn btn-default">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                  <h5>$ <span id="total-amount-cover">0</span></h5>
+                  <img
+                    id="remove-cart-2"
+                    src="images/remove.png"
+                    alt=""
+                    class="remove-item"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="cart-item">
+              <div class="row">
+                <div class="col-md-8">
+                  <h5>Subtotal:</h5>
+                  <h5>Tax:</h5>
+                  <h5>Total:</h5>
+                </div>
+
+                <div class="col-md-4 status">
+                  <h5>$ <span id="cart-subtotal">0</span></h5>
+                  <h5>$ <span id="tax">0</span></h5>
+                  <h5>$ <span id="cart-total">0</span></h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 pt-4 pb-4">
+              <button
+                id="checkout"
+                type="button"
+                class="btn btn-success check-out"
+              >
+                Check Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="no-product-found">
+      <div class="container">
+        <div class="cart">
+          <div class="col-md-12 col-lg-10 mx-auto">
+            <h1 class="text-center">No Product Found For Checkout</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="order-confrmed">
+      <div class="container">
+        <div class="cart">
+          <div class="col-md-12 col-lg-10 mx-auto">
+            <h1 class="text-center">Your Order has been confirmed</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="checkout-page">
+      <div class="container">
+        <div class="cart">
+          <div class="col-md-12 col-lg-10 mx-auto">
+            <div class="row" id="product-select1">
+              <div class="col-md-6 ">
+                <h2 class="text-right">iPhone 11 128GB Black</h2>
+              </div>
+              <div class="col-md-6 ">
+                <h2 class="text-center">
+                  <span id="checkout-product1">10</span> Unit
+                </h2>
+              </div>
+            </div>
+            <div class="row" id="product-select2">
+              <div class="col-md-6">
+                <h2 class="text-right">iPhone 11 Silicone Case - Black</h2>
+              </div>
+              <div class="col-md-6">
+                <h2 class="text-center">
+                  <span id="checkout-product2">10</span> Unit
+                </h2>
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-md-6">
+                <h2 class="text-right">Total:</h2>
+              </div>
+              <div class="col-md-6">
+                <h2 class="text-center">
+                  $ <span id="cart-total-chekout">0</span>
+                </h2>
+              </div>
+            </div>
+            <div class="col-md-12 pt-4 pb-4">
+              <button
+                id="confirm"
+                type="button"
+                class="btn btn-success check-out "
+              >
+                Cinfirm Order
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      //decrease product number
+      function decreaseProduct(id) {
+        const productNumber = parseFloat(document.getElementById(id).value);
+        const finalProduct = productNumber - 1;
+        if (productNumber <= 0) return 0;
+        return finalProduct;
+      }
+      //increase product number
+      function increaseProduct(id) {
+        const productNumber = parseFloat(document.getElementById(id).value);
+        const finalProduct = productNumber + 1;
+        return finalProduct;
+      }
+
+      //set total product number in item
+      function setInputValue(id, finalProduct) {
+        document.getElementById(id).value = finalProduct;
+      }
+      //set total amount in item
+      function setTotalAmount(id, finalProduct) {
+        document.getElementById(id).innerText = finalProduct;
+      }
+
+      //cart subtotal calculation
+      function cartSubtotal() {
+        const p1 = parseFloat(
+          document.getElementById("total-amount").innerText
+        );
+        const p2 = parseFloat(
+          document.getElementById("total-amount-cover").innerText
+        );
+
+        document.getElementById("cart-subtotal").innerText = (p1 + p2).toFixed(
+          2
+        );
+      }
+      //tax calculation
+      function calculateTax() {
+        const subtotal = parseFloat(
+          document.getElementById("cart-subtotal").innerText
+        );
+        const tax = parseFloat((subtotal * 15) / 100);
+        document.getElementById("tax").innerText = tax.toFixed(2);
+      }
+      //total amount calculation
+      function totalCost() {
+        const subtotal = parseFloat(
+          document.getElementById("cart-subtotal").innerText
+        );
+        const tax = parseFloat(document.getElementById("tax").innerText);
+        document.getElementById("cart-total").innerText = (
+          subtotal + tax
+        ).toFixed(2);
+      }
+
+      //product 1 minus btn
+      const minus = document.getElementById("minus-btn");
+      minus.addEventListener("click", () => {
+        const finalProduct = decreaseProduct("product-count");
+        setInputValue("product-count", finalProduct);
+        setTotalAmount("total-amount", finalProduct * 1219);
+
+        cartSubtotal();
+        calculateTax();
+        totalCost();
+      });
+
+      //product 1 plus btn
+      const plus = document.getElementById("plus-btn");
+      plus.addEventListener("click", () => {
+        const finalProduct = increaseProduct("product-count");
+        setInputValue("product-count", finalProduct);
+        setTotalAmount("total-amount", finalProduct * 1219);
+
+        cartSubtotal();
+        calculateTax();
+        totalCost();
+      });
+
+      //product 2 minus btn
+      const minus2 = document.getElementById("minus-btn-cover");
+      minus2.addEventListener("click", () => {
+        const finalProduct = decreaseProduct("cover-input-count");
+        setInputValue("cover-input-count", finalProduct);
+        setTotalAmount("total-amount-cover", finalProduct * 59);
+
+        cartSubtotal();
+        calculateTax();
+        totalCost();
+      });
+      //product 2 plus btn
+      const plus2 = document.getElementById("plus-btn-cover");
+      plus2.addEventListener("click", () => {
+        const finalProduct = increaseProduct("cover-input-count");
+        setInputValue("cover-input-count", finalProduct);
+        setTotalAmount("total-amount-cover", finalProduct * 59);
+
+        cartSubtotal();
+        calculateTax();
+        totalCost();
+      });
+
+      //remove item from cart
+      document.getElementById("remove-cart-2").addEventListener("click", () => {
+        document.getElementById("cart-2").style.display = "none";
+        document.getElementById("total-amount-cover").innerText = 0;
+        cartSubtotal();
+        calculateTax();
+        totalCost();
+
+        document.getElementById("product-select2").style.display = "none";
+      });
+      //remove item from cart
+      document.getElementById("remove-cart-1").addEventListener("click", () => {
+        document.getElementById("cart-1").style.display = "none";
+        document.getElementById("total-amount").innerText = 0;
+        cartSubtotal();
+        calculateTax();
+        totalCost();
+
+        document.getElementById("product-select1").style.display = "none";
+      });
+
+      //order confirm btn
+      document.getElementById("confirm").addEventListener("click", () => {
+        document.getElementById("checkout-page").style.display = "none";
+        document.getElementById("order-confrmed").style.display = "block";
+      });
+
+      //checkout button functionality
+      document.getElementById("checkout").addEventListener("click", () => {
+        const total = parseFloat(
+          document.getElementById("cart-total").innerText
+        );
+        document.getElementById("cart-page").style.display = "none";
+        if (total === 0) {
+          document.getElementById("no-product-found").style.display = "block";
+        } else {
+          document.getElementById("checkout-page").style.display = "block";
+
+          document.getElementById(
+            "cart-total-chekout"
+          ).innerText = total.toFixed(2);
+
+          const product1 = parseFloat(
+            document.getElementById("product-count").value
+          );
+          document.getElementById("checkout-product1").innerText = product1;
+
+          const product2 = parseFloat(
+            document.getElementById("cover-input-count").value
+          );
+          document.getElementById("checkout-product2").innerText = product2;
+
+          if (product1 === 0) {
+            document.getElementById("product-select1").style.display = "none";
+          }
+          if (product2 === 0) {
+            document.getElementById("product-select2").style.display = "none";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
